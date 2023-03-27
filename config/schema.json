@@ -1,0 +1,196 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "general": {
+      "type": "object",
+      "properties": {
+        "fullscreen": {
+          "type": "boolean",
+          "description": "Enable or disable fullscreen mode for the application."
+        },
+        "dark_theme": {
+          "type": "boolean",
+          "description": "Enable or disable the dark theme for the application."
+        }
+      },
+      "required": ["fullscreen", "dark_theme"]
+    },
+    "hardware": {
+      "type": "object",
+      "properties": {
+        "left_rotary_encoder_gpio": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 27
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "GPIO pin numbers for the left rotary encoder."
+        },
+        "right_rotary_encoder_gpio": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 27
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "GPIO pin numbers for the right rotary encoder."
+        },
+        "left_button_gpio": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 27,
+          "description": "GPIO pin number for the left button."
+        },
+        "right_button_gpio": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 27,
+          "description": "GPIO pin number for the right button."
+        }
+      },
+      "required": ["left_rotary_encoder_gpio", "right_rotary_encoder_gpio","left_button_gpio","right_button_gpio"]
+    },
+    "equalizer": {
+      "type": "object",
+      "properties": {
+        "bands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "type": "integer",
+                "minimum": 20,
+                "maximum": 20000,
+                "description": "Frequency in Hz for the equalizer band."
+              },
+              "gain": {
+                "type": "integer",
+                "minimum": -12,
+                "maximum": 12,
+                "description": "Gain in dB for the equalizer band."
+              }
+            },
+            "required": ["frequency", "gain"]
+          }
+        }
+      },
+      "required": ["bands"]
+    },
+    "bluetooth": {
+      "type": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean",
+          "description": "Enable or disable the Bluetooth functionality."
+        }
+      },
+      "required": ["enable"]
+    },
+    "local_media": {
+      "type": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean",
+          "description": "Enable or disable local media playback functionality."
+        },
+        "media_directory": {
+          "type": "string",
+          "description": "Path to the directory containing local media files."
+        }
+      },
+      "required": ["enable", "media_directory"]
+    },
+    "fm_radio": {
+      "type": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean",
+          "description": "Enable or disable the FM radio functionality."
+        },
+        "frequency": {
+          "type": "number",
+          "minimum": 87.5,
+          "maximum": 108.0,
+          "description": "Initial FM frequency in MHz."
+        },
+        "gain": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 49,
+          "description": "Initial gain for the SDR dongle in dB."
+        }
+      },
+      "required": ["enable", "frequency", "gain"]
+    },
+    "internet_radio": {
+      "type": "object",
+      "properties": {
+        "stations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the internet radio station."
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL of the internet radio station's stream."
+              }
+            },
+            "required": ["name", "url"]
+          },
+          "description": "List of predefined internet radio stations."
+        }
+      },
+      "required": ["stations"]
+    },
+    "spotify": {
+      "type": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean",
+          "description": "Enable or disable the Spotify functionality."
+        },
+        "client_id": {
+          "type": "string",
+          "description": "Spotify API client ID."
+        },
+        "client_secret": {
+          "type": "string",
+          "description": "Spotify API client secret."
+        },
+        "redirect_uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "Spotify API redirect URI."
+        },
+        "scope": {
+          "type": "string",
+          "description": "Spotify API access scope."
+        }
+      },
+      "required": ["enable", "client_id", "client_secret", "redirect_uri", "scope"]
+    }
+  },
+  "required": [
+    "general",
+    "hardware",
+    "equalizer",
+    "bluetooth",
+    "local_media",
+    "fm_radio",
+    "internet_radio",
+    "spotify"
+  ]
+}
+

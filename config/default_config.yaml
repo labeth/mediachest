@@ -1,0 +1,62 @@
+# default_config.yaml
+
+general:
+  fullscreen: true
+  dark_theme: true
+
+hardware:
+  left_rotary_encoder_gpio: [ 19, 20 ]
+  right_rotary_encoder_gpio: [ 21, 22 ]
+  left_button_gpio: 17
+  right_button_gpio: 18
+
+equalizer:
+  bands:
+    - frequency: 32
+      gain: 0
+    - frequency: 64
+      gain: 0
+    - frequency: 125
+      gain: 0
+    - frequency: 250
+      gain: 0
+    - frequency: 500
+      gain: 0
+    - frequency: 1000
+      gain: 0
+    - frequency: 2000
+      gain: 0
+    - frequency: 4000
+      gain: 0
+    - frequency: 8000
+      gain: 0
+    - frequency: 16000
+      gain: 0
+
+bluetooth:
+  enable: true
+
+local_media:
+  enable: true
+  media_directory: /path/to/media/files
+
+fm_radio:
+  enable: true
+  frequency: 88.0
+  gain: 30
+
+internet_radio:
+  enable: true
+  stations:
+    - name: "Station 1"
+      url: "http://streamurl1"
+    - name: "Station 2"
+      url: "http://streamurl2"
+
+spotify:
+  enable: true
+  client_id: "your_client_id"
+  client_secret: "your_client_secret"
+  redirect_uri: "http://localhost:8888/callback"
+  username: "your_spotify_username"
+  scope: "user-library-read"
